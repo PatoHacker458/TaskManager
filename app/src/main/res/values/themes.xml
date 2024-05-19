@@ -14,7 +14,7 @@
         <item name="android:fontFamily">@font/googlesans</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:backgroundTint">#FFF</item>
+        <item name="android:backgroundTint">#FFF45F</item>
     </style>
 
     <style name="main_subtitle">
