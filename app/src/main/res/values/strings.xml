@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">TASK MANAGER</string>
+    <string name="login_title">LOGIN</string>
+    <string name="logout_title">LOGOUT</string>
+    <string name="register_title">REGISTER</string>
+    <string name="username">USERNAME</string>
+    <string name="password">PASSWORD</string>
+
+    <string name="signUp_title">SIGN UP</string>
+    <string name="logIn_username">USERNAME</string>
+    <string name="hint_username">type your username</string>
+    <string name="logIn_password">PASSWORD</string>
+    <string name="hint_password">type your password</string>
+    <string name="signUp_password">REENTER PASSWORD</string>
+    <string name="hint_reenterPassword">reenter your password</string>
+    <string name="firstName">NAME</string>
+    <string name="hint_firstName">first name only</string>
+    <string name="lastName">LAST NAME</string>
+    <string name="hint_lastName">last name only</string>
+    <string name="email">EMAIL</string>
+    <string name="hint_email">Type your email</string>
+    <string name="phoneNumber">PHONE NUMBER</string>
+    <string name="hint_phoneNumber">Type your phone number</string>
+    <string name="gender">GENDER</string>
+
+    <array name="arrayGenders">
+        <item>Male</item>
+        <item>Female</item>
+    </array>
+</resources>

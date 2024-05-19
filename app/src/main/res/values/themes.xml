@@ -1,0 +1,61 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TaskManager" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    </style>
+
+    <style name="Theme.TaskManager" parent="Base.Theme.TaskManager" />
+
+    <style name="main_title">
+        <item name="android:textSize">30dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/googlesans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:backgroundTint">#FFF</item>
+    </style>
+
+    <style name="main_subtitle">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/googlesans</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:background">@color/black</item>
+    </style>
+
+    <style name="main_button">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/googlesans</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:backgroundTint">@color/periwinkle</item>
+    </style>
+
+    <style name="form_text">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/periwinkle</item>
+        <item name="android:fontFamily">@font/googlesans</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="form_labels">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/periwinkle</item>
+        <item name="android:fontFamily">monospace</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="hints_style">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/googlesans</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+
+</resources>
