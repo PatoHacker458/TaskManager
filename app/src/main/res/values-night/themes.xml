@@ -3,15 +3,5 @@
     <style name="Base.Theme.TaskManager" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <style name="main_title">
-            <item name="android:textSize">30dp</item>
-            <item name="android:textColor">@color/white</item>
-            <item name="android:fontFamily">@font/googlesans</item>
-            <item name="android:textStyle">bold</item>
-            <item name="android:textAlignment">center</item>
-            <item name="android:backgroundTint">#000000</item>
-        </style>
     </style>
-
-
 </resources>
