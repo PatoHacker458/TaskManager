@@ -3,6 +3,7 @@ package com.example.taskmanager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.HapticFeedbackConstants;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -51,32 +52,29 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin=findViewById(R.id. btnlogin);
 
         lblRegister.setOnClickListener((v)->{
+            lblRegister.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             Intent intent = new Intent(this, RegisterActivity.class);
             startActivity(intent);
         });
 
         btnLogin.setOnClickListener((v)->{
+            btnLogin.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             String email = txtUsername.getText().toString();
             String password = txtPassword.getText().toString();
             mAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d("Success", "Login successful");
-                                Toast.makeText(LoginActivity.this, "Authentication successful.",
-                                        Toast.LENGTH_SHORT).show();
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                redirectToHome(user.getUid());
-                                //updateUI(user);
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w("Error", "signInWithEmail:failure", task.getException());
-                                Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-                                //updateUI(null);
-                            }
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("Success", "Login successful");
+                            Toast.makeText(LoginActivity.this, "Authentication successful.",
+                                    Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            redirectToHome(user.getUid());
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("Error", "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     });
         });

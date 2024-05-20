@@ -3,11 +3,11 @@ package com.example.taskmanager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.HapticFeedbackConstants;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -59,6 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
     private void registerUser(){
+        btnRegister.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
         String email = txtEmail.getText().toString();
         String password = txtPassword.getText().toString();
         String first_name = txtFirstName.getText().toString();
@@ -75,25 +76,22 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
             mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Log.d("SUCCES", "createUserWithEmail:success");
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                assert user != null;
-                                newUser.setUid(user.getUid());
-                                createUserData(newUser);
-                                Toast.makeText(getApplicationContext(), "Authentication succesful.",
-                                        Toast.LENGTH_SHORT).show();
-                                finish();
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Log.w("ERROR", "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(getApplicationContext(), "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("SUCCES", "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            assert user != null;
+                            newUser.setUid(user.getUid());
+                            createUserData(newUser);
+                            Toast.makeText(getApplicationContext(), "Authentication succesful.",
+                                    Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("ERROR", "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(getApplicationContext(), "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     });
         }else{
