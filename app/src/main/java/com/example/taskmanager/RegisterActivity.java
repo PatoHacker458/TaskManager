@@ -73,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
         newUser.setPhone(phone);
         newUser.setGender(gender);
 
-        if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)){
+        if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override

@@ -1,7 +1,9 @@
 
 package com.example.taskmanager.models;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String uid;
     private String first_name;
     private String last_name;
