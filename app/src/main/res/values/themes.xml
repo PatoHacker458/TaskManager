@@ -44,7 +44,7 @@
     <style name="form_labels">
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/periwinkle</item>
-        <item name="android:fontFamily">monospace</item>
+        <item name="android:fontFamily">@font/googlesans</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAlignment">textStart</item>
     </style>
