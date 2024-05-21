@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/black"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="@color/black">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                style="@style/main_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TASK CREATOR"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                style="@style/form_labels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TASK NAME"/>
+            <EditText
+                style="@style/hints_style"
+                android:id="@+id/txtTaskName"
+                android:inputType="text"
+                android:hint="type the name of the task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                style="@style/form_labels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DESCRIPTION"/>
+            <EditText
+                style="@style/hints_style"
+                android:id="@+id/txtTaskDescription"
+                android:hint="task description"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                style="@style/form_labels"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DEADLINE"/>
+            <EditText
+                style="@style/hints_style"
+                android:id="@+id/txtTaskDeadline"
+                android:hint="type the deadline date"
+                android:inputType="textEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnAddTask"
+                    style="@style/main_button"
+                    android:text="ADD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"/>
+                <Button
+                    android:id="@+id/btnDismissTask"
+                    style="@style/main_button"
+                    android:text="DISMISS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

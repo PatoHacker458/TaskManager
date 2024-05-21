@@ -1,15 +1,17 @@
-
 package com.example.taskmanager.models;
-
 import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 public class User implements Serializable {
     private String uid;
     private String first_name;
     private String last_name;
-    private String  email;
-    private String  gender;
-    private String  phone;
+    private String email;
+    private String gender;
+    private String phone;
 
     public String getUid() {
         return uid;
