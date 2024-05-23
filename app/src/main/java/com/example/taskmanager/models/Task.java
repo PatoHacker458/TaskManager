@@ -1,23 +1,23 @@
 package com.example.taskmanager.models;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class Task {
     private String id;
     private String name;
     private String description;
-    private String dueDate;
+    private String deadline;
     private Boolean completed;
     private String uid;
 
-    public Task(String taskId, String string, String string1, String string2, boolean b, String uid) {
+    public Task() {
     }
 
+    public Task(String id, String name, String description, String deadline, Boolean completed, String uid) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.deadline = deadline;
+        this.completed = completed;
+        this.uid = uid;
+    }
 
     public String getId() {
         return id;
@@ -44,11 +44,11 @@ public class Task {
     }
 
     public String getDueDate() {
-        return dueDate;
+        return deadline;
     }
 
     public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
+        this.deadline = dueDate;
     }
 
     public Boolean getCompleted() {

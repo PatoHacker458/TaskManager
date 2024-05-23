@@ -8,20 +8,29 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.taskmanager.adapters.TaskAdapter;
 import com.example.taskmanager.models.Task;
 import com.example.taskmanager.models.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class HomeActivity extends AppCompatActivity {
@@ -39,21 +48,14 @@ public class HomeActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        String [] arrTasks = {"Task 1", "Task 2", "Task 3", "Task 4", "Task 5", "Task 6", "Task 7", "Task 8", "Task 9", "Task 10"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.select_dialog_multichoice,
-                arrTasks);
         lvTaskView = findViewById(R.id.lvTaskView);
-        lvTaskView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        lvTaskView.setAdapter(adapter);
-
 
         Bundle bundle = getIntent().getExtras();
         user =(User) bundle.getSerializable("user");
         String full_name = user.getFirst_name() + user.getLast_name();
 
         initFab();
+        readFirebaseTask(user.getUid());
     }
 
     private void showAddTaskForm(){
@@ -80,14 +82,14 @@ public class HomeActivity extends AppCompatActivity {
                     txtDescription.getText().toString(),
                     txtDeadline.getText().toString(),
                     false,user.getUid());
+            Toast.makeText(this, "Task Created", Toast.LENGTH_SHORT).show();
             createFirbaseTask(newTask);
             dialog.dismiss();
                 });
         dialog.show();
     }
     private void createFirbaseTask(Task task){
-        DatabaseReference ref = db.getReference("Tasks/ "+task.getId());
-        System.out.println(task.getName());
+        DatabaseReference ref = db.getReference("Tasks/"+task.getId());
         ref.setValue(task);
     }
     private void initFab(){
@@ -96,5 +98,28 @@ public class HomeActivity extends AppCompatActivity {
             fab.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
             showAddTaskForm();
         });
+    }
+    List<Task> taskList = new ArrayList<>();
+    private void readFirebaseTask(String userId){
+        DatabaseReference ref = db.getReference("tasks/");
+        Query query = ref.orderByChild("uid").equalTo(userId);
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                taskList.clear();
+                for(DataSnapshot item: snapshot.getChildren()){
+                    Task task = item.getValue(Task.class);
+                    taskList.add(task);
+                }
+                TaskAdapter adapter = new TaskAdapter(HomeActivity.this, taskList);
+                lvTaskView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        query.addValueEventListener(valueEventListener);
     }
 }
