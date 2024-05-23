@@ -101,7 +101,7 @@ public class HomeActivity extends AppCompatActivity {
     }
     List<Task> taskList = new ArrayList<>();
     private void readFirebaseTask(String userId){
-        DatabaseReference ref = db.getReference("tasks/");
+        DatabaseReference ref = db.getReference("Tasks/");
         Query query = ref.orderByChild("uid").equalTo(userId);
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
